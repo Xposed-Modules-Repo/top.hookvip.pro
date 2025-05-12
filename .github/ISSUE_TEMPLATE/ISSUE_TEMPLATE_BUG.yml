@@ -12,7 +12,7 @@ body:
           required: true
         - label: 请确保你已升级至 [最新的release版本](https://github.com/Xposed-Modules-Repo/top.hookvip.pro/releases/latest)。
           required: true
-        - label: 请确保你已在 [已有的issues](https://github.com/Xposed-Modules-Repo/top.hookvip.pro/issues?q=is%3Aissue+is%3Aclosed) 中查询过没有类似的问题。
+        - label: 请确保你已在 [已有的issues](https://github.com/Xposed-Modules-Repo/top.hookvip.pro/issues?q=is%3Aissue%20is%3Aclosed%20label%3A%E9%97%AE%E9%A2%98%E5%8F%8D%E9%A6%88) 中查询过没有类似的问题。
           required: true
   - type: input
     id: xposed-framework
