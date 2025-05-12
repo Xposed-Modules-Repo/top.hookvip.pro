@@ -1,9 +1,8 @@
 name: 适配请求
 description: 如果你有 某些需求/建议 请选择此项进行提交
-title: "【适配请求】 "
+title: "【适配请求】 应用名称"
 labels: [ "新需求" ]
 body:
-
   - type: checkboxes
     id: checklist
     attributes:
@@ -33,6 +32,14 @@ body:
       label: 应用包名
       description: 请在此填写您需要适配的应用包名
       placeholder: 例如：info.muge.appshare
+    validations:
+      required: true
+  - type: input
+    id: app-size
+    attributes:
+      label: 应用大小
+      description: 请在此填写应用安装包体积大小
+      placeholder: 例如：28.41MB
     validations:
       required: true
   - type: input
