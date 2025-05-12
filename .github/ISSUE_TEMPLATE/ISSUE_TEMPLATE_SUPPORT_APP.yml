@@ -47,7 +47,7 @@ body:
     attributes:
       label: 加固状态
       description: 请填写应用的加固状态(可以在MT管理器复制)
-      placeholder: "例如: 未加固/360加固/梆梆加固/网易易盾/等"
+      placeholder: "例如：未加固/360加固/梆梆加固/网易易盾/等"
     validations:
       required: true
   - type: input
@@ -74,7 +74,7 @@ body:
       description: 请在此添加应用下载地址/安装包文件
     validations:
       required: true
-  - type: input
+  - type: textarea
     id: dex-unpack
     attributes:
       label: 脱壳任务提交 (如果已加固)
