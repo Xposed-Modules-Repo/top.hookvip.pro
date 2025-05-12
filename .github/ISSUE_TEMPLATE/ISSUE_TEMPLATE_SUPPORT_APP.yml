@@ -43,6 +43,14 @@ body:
     validations:
       required: true
   - type: input
+    id: reinforcement
+    attributes:
+      label: 加固状态
+      description: 请填写应用的加固状态(可以在MT管理器复制)
+      placeholder: "例如: 未加固/360加固/梆梆加固/网易易盾/等"
+    validations:
+      required: true
+  - type: input
     id: app-use
     attributes:
       label: 应用用途
@@ -66,3 +74,9 @@ body:
       description: 请在此添加应用下载地址/安装包文件
     validations:
       required: true
+  - type: input
+    id: dex-unpack
+    attributes:
+      label: 脱壳任务提交 (可选)
+      description: 请前往 https://56.al/upload.php 上传对应应用的APK文件 提交脱壳任务
+      placeholder: "例如：https://56.al/file.php?hash=对应的hash值"
