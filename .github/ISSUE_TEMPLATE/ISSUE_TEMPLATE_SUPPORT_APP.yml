@@ -77,6 +77,6 @@ body:
   - type: input
     id: dex-unpack
     attributes:
-      label: 脱壳任务提交 (可选)
-      description: 请前往 https://56.al/upload.php 上传对应应用的APK文件 提交脱壳任务
+      label: 脱壳任务提交 (如果已加固)
+      description: 请前往 https://56.al/upload.php 上传对应应用的APK文件(方便我们更快为你适配)
       placeholder: "例如：https://56.al/file.php?hash=对应的hash值"
