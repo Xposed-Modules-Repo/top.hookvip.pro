@@ -8,7 +8,7 @@ body:
     attributes:
       label: ⚠️ 重要阅读
       options:
-        - label: 由于个人时间精力有限 不会采纳所有的适配请求 具体更新请以最新版为准
+        - label: 由于个人时间精力有限 不会采纳所有的适配请求 具体更新请以最新版为准(加入内测优先适配)
           required: true
         - label: 可以提旧版模块上有的功能 会优先同步到新版模块
           required: true
