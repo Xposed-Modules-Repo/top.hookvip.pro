@@ -74,6 +74,8 @@
 + 模块已经陆续维护近三年之久(起始于2022.08.12)
 + 如果你觉得这个模块对你有帮助 欢迎对开发者进行打赏！
 + 这将是我继续维护更新的动力！
-+ PS:赞赏满30元 可加入模块专属内测群 请联系TG:@lovejiuwu
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/4d2143e7-6a06-44ac-9e55-a2810585561f" />
++ PS:赞赏满30元 可加入模块专属内测群 请联系TG:@lovejiuwu (请先阅读[频道置顶消息](https://t.me/HookVipCl/650))
+
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/4d2143e7-6a06-44ac-9e55-a2810585561f" />
+
 
