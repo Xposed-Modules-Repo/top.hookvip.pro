@@ -1,338 +1,563 @@
-# ISSUE Triage Skills for `top.hookvip.pro`
+# ISSUE TRIAGE SKILLS for `top.hookvip.pro`
 
-> Repository: `Xposed-Modules-Repo/top.hookvip.pro`
+> 仓库：`Xposed-Modules-Repo/top.hookvip.pro`
 >
-> Purpose: Define the preferred workflow and rules for triaging GitHub issues in this repository so future issue handling can follow the same conventions without repeating instructions.
-
-## 1. Core workflow
-
-For **every category** of issues:
-
-1. **List the issues first**
-2. **Propose the handling plan**
-   - whether to close
-   - whether to reply
-   - whether to modify title/body
-   - what labels to add
-   - what close reason to use
-3. **Wait for confirmation**
-4. **Execute only after confirmation**
-
-Do **not** batch-handle a category without confirmation.
+> 用途：定义本仓库的 GitHub issue 分流与处理规则，确保后续 issue triage 风格统一、执行稳定，并尽量贴近维护者的实际偏好。
 
 ---
 
-## 2. Comment convention
+## 1. 总原则
 
-All automated assistant replies should begin with:
+处理 issue 时，遵循以下流程：
+
+1. **先判断 issue 属于哪一类**
+2. **按优先级命中最高的一条规则处理**
+3. **规则明确时直接执行**
+4. **只有边界情况才先汇报并等待确认**
+
+不要把“所有 issue 都先列出方案再等确认”当成固定流程。
+
+---
+
+## 2. 默认执行策略
+
+### 2.1 可直接执行的动作
+
+当规则命中明确时，助手可以直接执行以下操作：
+
+- 回复 issue
+- 添加标签 `AI审核`
+- 添加标签 `已处理`
+- 关闭 issue
+- 使用关闭原因 `not_planned`
+- 小幅规范化标题
+- 小幅修正文中明显错误
+- 关闭明显重复 issue
+
+### 2.2 `AI审核` 标签规则
+
+凡是经过 AI 完成过一次 triage 判断的 issue，无论最终是否关闭，都应添加标签：
+
+```text
+AI审核
+```
+
+用途：
+
+- 表示该 issue 已经被 AI 审核过一次
+- 下次批量 triage 时，可优先跳过这类旧 issue
+- 避免重复审查同一批 open issues
+
+### 2.3 已审核 issue 的重新处理条件
+
+仅在以下情况重新处理已带 `AI审核` 标签的 issue：
+
+- issue 出现了新评论
+- 用户补充了新材料
+- 维护者明确要求复查
+- triage 规则发生变化，需要重新套用
+
+### 2.4 必须先确认的情况
+
+以下情况先汇报，再等确认：
+
+- 一个 issue **同时命中多个分类且处理动作冲突**
+- 怀疑是重复 issue，但**不确定该保留哪一个**
+- 修改标题或正文会**改变原意**，而不只是格式规范化
+- 要一次性批量处理很多 issue，且可能存在争议
+- 现有规则不够用，需要临时新增判断标准
+- 标签策略不明确，或需要新增标签使用方式
+
+---
+
+## 3. 评论规范
+
+所有助手自动回复都必须以：
 
 ```text
 [AI]
 ```
 
----
+开头。
 
-## 3. Default close behavior
-
-Unless otherwise specified:
-
-- add label: `已处理`
-- close reason: `not_planned`
+不得省略。
 
 ---
 
-## 4. Title conventions
+## 4. 默认关闭规则
 
-### 4.1 Bug / issue feedback
+除非某条规则另有说明，否则关闭 issue 时默认：
 
-Use:
+- 添加标签：`已处理`
+- close reason：`not_planned`
+
+说明：
+
+- `AI审核` 表示 **AI 已看过并做出过一次判断**
+- `已处理` 表示 **该 issue 已按当前规则完成处理并结束**
+
+---
+
+## 5. 分类优先级
+
+如果一个 issue 同时命中多个类别，按以下优先级处理：
+
+1. **重复 issue**
+2. **类型不符 / 模板用错**
+3. **纯去广告需求**
+4. **内容无效 / 表述不清 / 明显敷衍**
+5. **字段错误 / 标题正文修正**
+6. **其余保留 open**
+
+注意：
+
+- 如果是重复 issue，**优先按重复处理**
+- 不要先花时间修正文案，再去把它按重复关闭
+
+---
+
+## 6. 标题规范
+
+### 6.1 问题反馈
+
+标题格式：
 
 ```text
 【问题反馈】 xxx
 ```
 
-### 4.2 Adaptation request
+### 6.2 适配请求
 
-Use:
+标题格式：
 
 ```text
 【适配请求】 应用名称
 ```
 
-### 4.3 Title editing rule
+### 6.3 可以直接改标题的情况
 
-If an issue's **content is clear but the title is non-standard**, it may be renamed.
+以下情况可**直接修改标题**，无需确认：
 
-But before renaming:
+- issue 原意已经很明确
+- 新标题只是规范格式，不改变语义
+- 只是补前缀、修正明显错别字、统一表达方式
 
-1. list the affected issues
-2. show current title and proposed new title
-3. wait for confirmation
-4. rename after confirmation
+例如：
+
+- 漏了 `【问题反馈】` / `【适配请求】`
+- 应用名明确，但标题格式不统一
+- 有明显多余符号、重复词、低风险错字
+
+### 6.4 需要先确认再改标题的情况
+
+以下情况先确认：
+
+- 存在多个都合理的新标题
+- 原 issue 表意不清
+- 改标题会带入解释或重新定义 issue 含义
 
 ---
 
-## 5. A 类：问题反馈缺材料 / 特殊原因
+## 7. 先判断 issue 类型
+
+### 7.1 问题反馈
+
+以下情况按 **问题反馈** 处理：
+
+- 以前能用，现在失效
+- hook 失败
+- 版本更新后不生效
+- 崩溃、报错、异常行为
+- 会员解锁失效
+- 模块功能失效 / 无法注入
+
+典型标题格式：
+
+```text
+【问题反馈】 xxx
+```
+
+### 7.2 适配请求
+
+以下情况按 **适配请求** 处理：
+
+- 请求支持新的 app
+- 请求新增某个功能
+- 请求首次适配某个应用
+- 请求新增某种解锁 / 绕过 / 扩展能力
+
+典型标题格式：
+
+```text
+【适配请求】 应用名称
+```
+
+### 7.3 类型不符
+
+如果内容本质上是问题反馈，却用适配请求模板提交，或者反过来：
+
+处理方式：
+
+- 回复
+- 添加 `AI审核`
+- 添加 `已处理`
+- 关闭
+
+推荐回复：
+
+```text
+[AI] 该 issue 内容与所选模板类型不符，请按正确模板重新提交。
+```
+
+如果是“失效反馈被当成适配请求提交”，优先使用：
+
+```text
+[AI] 该 issue 内容属于问题反馈/功能失效，不属于适配请求。请按“问题反馈”模板重新提交。
+```
+
+---
+
+## 8. A 类：内容无效 / 缺材料 / 特殊原因
 
 ### A1. 明显乱填、敷衍填写
 
-Handling:
+定义：
 
-- reply
-- add `已处理`
-- close
+- 关键信息乱填、无效、看不出实际问题
+- 模板虽然填了，但没有可处理内容
+- 描述、截图、日志整体都无效
+- 明显是随便写的、复制糊弄的、没有实际信息量
 
-Recommended reply:
+处理方式：
+
+- 回复
+- 添加 `AI审核`
+- 添加 `已处理`
+- 关闭
+
+推荐回复：
 
 ```text
 [AI] 提交内容未按模板规范填写，关键信息无效，无法处理。请按模板完整填写问题描述、截图/视频及 LSPosed 日志后重新提交。
 ```
 
-### A2. 反馈的是内测功能，公测版本没有
+### A2. 内容表述不清
 
-Handling:
+定义：
 
-- reply
-- add `已处理`
-- close
+- 无法明确判断诉求是什么
+- 表述过于模糊，无法落到具体功能/问题点
+- 维护者无法根据当前内容决定该支持/修复什么
 
-Recommended reply:
+处理方式：
+
+- 回复
+- 添加 `AI审核`
+- 添加 `已处理`
+- 关闭
+
+推荐回复：
 
 ```text
-[AI] 该功能为内测功能，公测版本暂无此功能。
+[AI] 当前提交内容表述不清，无法判断具体诉求，暂不处理。请补充明确的功能需求后重新提交。
 ```
 
 ### A3. 更像服务器侧问题
 
-Handling:
+定义：
 
-- reply
-- add `已处理`
-- close
+- 从描述看更像服务端控制、服务端校验、服务器策略变化
+- 不像模块本地逻辑问题
+- 当前没有作为模块 issue 跟踪的必要
 
-Recommended reply:
+处理方式：
+
+- 回复
+- 添加 `AI审核`
+- 添加 `已处理`
+- 关闭
+
+推荐回复：
 
 ```text
 [AI] 该问题更可能是服务器侧功能或服务端控制导致，暂不作为模块问题处理。
 ```
 
-### A4. 边界问题先不动
+### A4. 缺少材料，不等于一定关闭
 
-Not all issues with missing logs/screenshots should be closed immediately.
-Some should be left untouched and judged case by case.
+**不要因为缺截图或缺日志就直接关闭**，如果 issue 仍然具备基本跟踪价值，就可以保留。
+
+优先保留 open 的情况：
+
+- 问题描述已经清楚
+- 截图足以说明问题
+- 版本 / 应用 / 框架信息基本可用
+- 即使缺日志，也明显像一个真实失效问题
+
+优先关闭的情况：
+
+- 因缺材料导致整个 issue 几乎无法判断
+- 描述本身也不清楚
+- 缺的不是“部分材料”，而是“几乎所有有效信息”
+
+处理说明：
+
+- 如果决定保留 open，也应添加 `AI审核`
+- 这样后续批量 triage 时可默认跳过，除非有新信息
 
 ---
 
-## 6. B 类：广告相关 issue
+## 9. B 类：广告相关 issue
 
-These must be split into three groups first.
+广告类 issue 需要细分，不能一刀切。
 
-### B1. 纯“去广告”需求
+### B1. 纯去广告需求
 
-Definition:
+定义：
 
-- only ad removal is requested
-- no ad-reward bypass
-- no other major function request
+- 诉求只有去广告
+- 不包含广告奖励绕过
+- 不包含 VIP 解锁
+- 不包含其他主要功能诉求
 
-Handling:
+例如：
 
-- reply with AdClose guidance
-- add `已处理`
-- close
+- 去开屏广告
+- 去横幅广告
+- 去弹窗广告
+- 跳广告
+- “跳广告功能失效”，但本质诉求依然只是纯去广告
 
-Recommended reply:
+处理方式：
+
+- 回复 AdClose 引导
+- 添加 `AI审核`
+- 添加 `已处理`
+- 关闭
+
+推荐回复：
 
 ```text
 [AI] 该需求属于去广告类需求，仓库模板已说明此类需求请使用 AdClose，故不在本仓库处理。
 ```
 
-### B2. “免广告领奖励 / 看广告解锁权益”类
+### B2. 免广告领奖励 / 看广告解锁权益
 
-Definition:
+定义：
 
-- not simple ad removal
-- user wants reward/time/benefit without watching ads
+- 不是单纯去广告
+- 用户要的是“不看广告但仍获得广告对应收益”
+- 广告和奖励、权益、时长、会员能力绑定
 
-Handling:
+例如：
 
-- keep open for now
-- do not process yet
+- 免广告获得奖励
+- 看广告解锁会员画质
+- 跳过广告但仍领取奖励
+- 广告解锁时长 / 权益 / 次数
 
-### B3. “去广告 + 其他功能”混合类
+处理方式：
 
-Definition:
+- 保持 open
+- 添加 `AI审核`
+- 不按“纯去广告”规则关闭
 
-- ad removal is only one part
-- also includes VIP unlock, root detection bypass, other feature unlocks, etc.
+### B3. 去广告 + 其他功能混合类
 
-Handling:
+定义：
 
-- keep open for now
-- do not process yet
+- 去广告只是诉求的一部分
+- 同时还包含 VIP 解锁 / 功能解锁 / root 检测绕过 / 其他主功能请求
+
+处理方式：
+
+- 保持 open
+- 添加 `AI审核`
+- 不按“纯去广告”规则关闭
 
 ---
 
-## 7. C 类：字段填写错误 / issue 内容修正
+## 10. C 类：字段填写错误 / 正文修正
 
 ### C1. 下载地址为空
 
-Handling preference:
+处理偏好：
 
-- can be ignored
+- 可以忽略
+- 不因为这一点单独关闭 issue
 
 ### C2. 明显字段填错
 
-Examples:
+例如：
 
-- app name filled with a download link
-- invalid packer/protection status
-- malformed markdown link
-- download address filled with repository zip/tag asset instead of app link
+- 应用名称栏里填了下载链接
+- 某字段内容填到了错误位置
+- markdown 链接格式写坏了
+- 加固信息明显写错但可低风险修正
+- 下载地址里填的是仓库附件而不是 app 来源，且很容易判断正确含义
 
-Handling preference:
+处理方式：
 
-- may be corrected
-- confirm before editing
-- make the **smallest necessary change**
-- usually no comment needed when silently correcting
+- 可直接小修
+- 只做**最小必要修改**
+- 一般不需要专门留言说明
+- 修正后添加 `AI审核`
+- 不要过度润色或重写用户原文
 
-### C3. If the issue is also duplicate
+### C3. 修正文案的原则
 
-Priority rule:
+只修正以下内容：
 
-- **duplicate handling takes precedence**
-- do not spend time fixing the body if it will be closed as duplicate
+- 明显错误
+- 低风险
+- 不涉及主观解释
+
+不要大段重写用户内容。
+
+### C4. 如果同时是重复 issue
+
+优先按重复处理：
+
+- 先按重复关闭
+- 不要浪费时间修正文案
 
 ---
 
-## 8. D 类：重复 issue
+## 11. D 类：重复 issue
 
-Handling:
+### D1. 一般重复处理规则
 
-- keep the better submission
-- close the duplicate(s)
-- reply with the kept issue number/link
-- remind the user not to submit duplicates
-- add `已处理`
+处理方式：
 
-Recommended reply:
+- 保留质量更高的那条
+- 关闭重复 issue
+- 回复保留的 issue 编号
+- 提醒不要重复提交
+- 添加 `AI审核`
+- 添加 `已处理`
+
+推荐回复：
 
 ```text
 [AI] 与已有 issue 重复，保留继续跟进：#xxx。请勿重复提交。
 ```
 
-### Confirmed preferred kept issues in this repository
+### D2. 保留哪一个
 
-- Todo便签: keep `#413`
-- 绿茶VPN: keep `#374`
-- 零秒CarPlus: keep `#173`
-- 长图拼接大师: keep `#325`
-- 飞鸟听书: keep `#121`
+优先保留：
 
----
+- 更早提交的
+- 内容更完整的
+- 结构更清晰的
+- 描述 / 截图 / 日志更有价值的
+- 已经有更多后续上下文的
 
-## 9. 内容表述规则
-
-### 9.1 内容表述不清
-
-Definition:
-
-- request is too vague
-- cannot determine the actual requested functionality
-- not actionable for maintainers
-
-Handling:
-
-- reply
-- add `已处理`
-- close
-
-Recommended reply:
-
-```text
-[AI] 当前提交内容表述不清，无法判断具体诉求，暂不处理。请补充明确的功能需求后重新提交。
-```
-
-### 9.2 类型不符
-
-Definition:
-
-- issue was filed under the wrong template/category
-- e.g. a bug report submitted as an adaptation request
-
-Handling:
-
-- reply
-- add `已处理`
-- close
-- remind the user to use the proper template
-
-Recommended reply:
-
-```text
-[AI] 该 issue 内容属于问题反馈/功能失效，不属于适配请求。请按“问题反馈”模板重新提交。
-```
+如果无法明显判断保留哪一个，先汇报再等确认。
 
 ---
 
-## 10. Preferred execution order
+## 12. 保持 open 的规则
 
-When asked to handle a category:
+以下情况优先保持 open：
 
-1. first list the matching open issues
-2. then propose the handling plan
-3. wait for confirmation
-4. execute after confirmation
+- 正常的问题反馈，且已有足够可用信息
+- 正常的适配请求，目标清晰
+- 属于广告奖励类，而不是纯去广告
+- 属于“去广告 + 其他功能”的混合类
+- 材料不算完整，但仍具备跟踪价值
+- 没有明确命中关闭规则
+
+当“关闭”和“保留 open”之间拿不准时，优先：
+
+- 对**可能有效的功能问题 / 失效反馈**，倾向保留 open
+- 对**明显无效 / 重复 / 类型不符 / 纯去广告**，倾向关闭
+
+说明：
+
+- 保留 open 的 issue，如果已经完成过一次 triage，也应添加 `AI审核`
+- 后续只有在出现新信息或明确要求复查时，才再次处理
 
 ---
 
-## 11. Reusable reply templates
+## 13. 批量 triage 规则
 
-### 11.1 去广告类
+### 13.1 默认优先级
+
+在批量处理 open issues 时，优先处理：
+
+- **没有 `AI审核` 标签的 open issues**
+
+默认不重复处理：
+
+- **已经带有 `AI审核` 标签的 open issues**
+
+除非：
+
+- 有新评论
+- 有新补充材料
+- 维护者要求复查
+- 规则发生变化
+
+### 13.2 批量处理方式
+
+当维护者要求批量处理某类 issue 时：
+
+1. 先获取目标 issue 列表
+2. 优先筛出**未带 `AI审核` 标签**的 open issues
+3. 按分类规则处理
+4. 对规则明确的 case 直接执行
+5. 对边界 case 单独列出并请示
+
+本仓库 **不要求每个 routine case 都先确认**。
+
+---
+
+## 14. 常用回复模板
+
+### 14.1 纯去广告类
 
 ```text
 [AI] 该需求属于去广告类需求，仓库模板已说明此类需求请使用 AdClose，故不在本仓库处理。
 ```
 
-### 11.2 重复 issue
+### 14.2 重复 issue
 
 ```text
 [AI] 与已有 issue 重复，保留继续跟进：#xxx。请勿重复提交。
 ```
 
-### 11.3 内容表述不清
+### 14.3 内容表述不清
 
 ```text
 [AI] 当前提交内容表述不清，无法判断具体诉求，暂不处理。请补充明确的功能需求后重新提交。
 ```
 
-### 11.4 类型不符
+### 14.4 类型不符（失效反馈误投适配请求）
 
 ```text
 [AI] 该 issue 内容属于问题反馈/功能失效，不属于适配请求。请按“问题反馈”模板重新提交。
 ```
 
-### 11.5 明显乱填 / 敷衍填写
+### 14.5 明显乱填 / 敷衍填写
 
 ```text
 [AI] 提交内容未按模板规范填写，关键信息无效，无法处理。请按模板完整填写问题描述、截图/视频及 LSPosed 日志后重新提交。
 ```
 
-### 11.6 内测功能，公测无此功能
-
-```text
-[AI] 该功能为内测功能，公测版本暂无此功能。
-```
-
-### 11.7 可能是服务器功能
+### 14.6 可能是服务器侧问题
 
 ```text
 [AI] 该问题更可能是服务器侧功能或服务端控制导致，暂不作为模块问题处理。
 ```
 
+### 14.7 通用类型不符
+
+```text
+[AI] 该 issue 内容与所选模板类型不符，请按正确模板重新提交。
+```
+
 ---
 
-## 12. One-line summary
+## 15. 一句话总结
 
-In `top.hookvip.pro`, issue triage should always be done category-by-category: list first, propose plan, wait for confirmation, then execute; use `[AI]` in comments; add `已处理` when closing unless told otherwise; close pure ad-removal requests with AdClose guidance; keep ad-reward and mixed requests for now; close unclear or miscategorized issues; and for duplicates, keep the better submission and close the rest.
+在 `top.hookvip.pro` 中，issue triage 应优先处理重复 issue，其次处理类型不符、纯去广告、内容无效等情况；常规命中规则的 issue 直接执行，并统一添加 `AI审核` 标签；需要关闭的 issue 默认再加 `已处理`，并以 `not_planned` 关闭；只有边界情况才先请示确认。
